@@ -28,21 +28,23 @@
 #elif defined(__APPLE__)
 	#define HTTPS_BACKEND_NSURL
 	#define HTTPS_LIBRARY_LOADER_UNIX
-#elif defined(linux) || defined(__linux) || defined(__linux__)
-	#define HTTPS_LIBRARY_LOADER_UNIX
+#elif defined(linux) || defined(__linux) || defined(__linux__) || defined(__SWITCH__)
+    #define HTTPS_LIBRARY_LOADER_UNIX
 
-	#if defined __has_include
-		#if __has_include(<curl/curl.h>)
-			#define HTTPS_BACKEND_CURL
-		#endif
-		#if __has_include(<openssl/ssl.h>)
-			#define HTTPS_BACKEND_OPENSSL
-		#endif
-	#else
-		// Hope for the best...
-		#define HTTPS_BACKEND_CURL
-		#define HTTPS_BACKEND_OPENSSL
-	#endif
+    #if !defined(__SWITCH__)
+        #if defined(__has_include)
+            #if __has_include(<curl/curl.h>)
+                #define HTTPS_BACKEND_CURL
+            #endif
+
+            #if __has_include(<openssl/ssl.h>)
+                #define HTTPS_BACKEND_OPENSSL
+            #endif
+        #else
+            #define HTTPS_BACKEND_CURL
+            #define HTTPS_BACKEND_OPENSSL
+        #endif
+    #endif
 #endif
 
 #if defined(WIN32) || defined(_WIN32) || defined(__CYGWIN__)
