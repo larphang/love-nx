@@ -1619,7 +1619,7 @@ add_library(love_3p_luahttps
 	src/libraries/luahttps/src/windows/WinINetClient.cpp
 	src/libraries/luahttps/src/windows/WinINetClient.h
 )
-target_link_libraries(love_3p_luahttps ${LOVE_LUA_LIBRARY})
+target_link_libraries(love_3p_luahttps ${LOVE_LUA_LIBRARY} curl)
 
 if (APPLE)
 	target_sources(love_3p_luahttps PRIVATE
