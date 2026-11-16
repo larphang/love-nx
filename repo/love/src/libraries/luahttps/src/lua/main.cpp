@@ -1,8 +1,11 @@
 #include <algorithm>
 #include <set>
 
-#include <pluto/lua.h>
-#include <pluto/lauxlib.h>
+extern "C"
+{
+#include <lua.h>
+#include <lauxlib.h>
+}
 
 #include "../common/HTTPS.h"
 #include "../common/config.h"
